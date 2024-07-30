@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../useFetch";
 import AccomplishmentList from "../Displays/accomplishmentList";
 
@@ -10,6 +10,7 @@ const Accomplished = () => {
     "http://localhost:8000/Something"
   );
   const [accompCount, setAccompCount] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:8000/Something")
@@ -22,6 +23,14 @@ const Accomplished = () => {
         console.error("Error fetching data:", error);
       });
   }, []);
+
+  const handleDelete = (id) => {
+    fetch("http://localhost:8000/Something/" + id, {
+      method: "DELETE",
+    }).then(() => {
+      window.location.reload();
+    });
+  };
 
   const handleSubmit = (e) => {
     const done = { accomp };
@@ -71,7 +80,9 @@ const Accomplished = () => {
           <h3 className="text-warning">Achievements: </h3>
           {loading && <p>Loading...</p>}
           {err && <p>{err}</p>}
-          {data && <AccomplishmentList data={data} />}
+          {data && (
+            <AccomplishmentList data={data} handleDelete={handleDelete} />
+          )}
         </div>
       )}
     </div>
