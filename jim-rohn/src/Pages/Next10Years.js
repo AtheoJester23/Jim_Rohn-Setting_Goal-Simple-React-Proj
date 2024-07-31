@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useFetch from "../useFetch";
 import GoalList from "../Displays/GoalList";
-import OneYearGoal from "../Displays/OneYearGoal";
+import OneYearGoal from "../Displays/YearGoals/OneYearGoal";
+import ThreeYearGoal from "../Displays/YearGoals/ThreeYearGoal";
+import FiveYearGoal from "../Displays/YearGoals/FiveYearGoal";
+import { Windows } from "react-bootstrap-icons";
+import TenYearGoal from "../Displays/YearGoals/TenYearGoal";
 
 const NextTen = ({ filteredData }) => {
   const [accompCount, setAccompCount] = useState(0);
@@ -11,6 +15,19 @@ const NextTen = ({ filteredData }) => {
     "http://localhost:8000/Goal"
   );
   const [yearGoal, setYearGoal] = useState("");
+  const [goalCount, setGoalCount] = useState(0);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/Goal")
+      .then((response) => response.json())
+      .then((data) => {
+        setGoalCount(data.length);
+        console.log(`Number of Pages: ${data.length}`);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   const handleDelete = (id) => {
     fetch("http://localhost:8000/Goal/" + id, {
@@ -32,6 +49,7 @@ const NextTen = ({ filteredData }) => {
     }).then(() => {
       setPending(false);
       setGoal("");
+      window.location.reload();
     });
   };
 
@@ -74,10 +92,17 @@ const NextTen = ({ filteredData }) => {
           <div className="border">1 Year Goal</div>
           <div>{data && <OneYearGoal data={data} />}</div>
         </div>
-        <div className="col-sm text-light border border-light">3 Year Goal</div>
-        <div className="col-sm text-light border border-light">5 Year Goal</div>
         <div className="col-sm text-light border border-light">
-          10 Year Goal
+          <div className="border">3 Year Goal</div>
+          <div>{data && <ThreeYearGoal data={data} />}</div>
+        </div>
+        <div className="col-sm text-light border border-light">
+          <div className="border">5 Year Goal</div>
+          <div>{data && <FiveYearGoal data={data} />}</div>
+        </div>
+        <div className="col-sm text-light border border-light">
+          <div className="border">10 Year Goal</div>
+          <div>{data && <TenYearGoal data={data} />}</div>
         </div>
       </div>
     </div>
