@@ -33,58 +33,67 @@
   ],
   "Goal": [
     {
-      "theGoal": "Testing",
-      "yearGoal": "1 Year Goal",
+      "theGoal": "testagain",
+      "yearGoal": "3 Year Goal",
       "id": "70ab"
     },
     {
       "id": "e66e",
       "theGoal": "Make Music",
-      "yearGoal": "1 Year Goal"
+      "yearGoal": "1 Year Goal",
+      "mark": "notDone"
     },
     {
       "id": "eff5",
       "theGoal": "Buff me up",
-      "yearGoal": "1 Year Goal"
+      "yearGoal": "1 Year Goal",
+      "mark": "notDone"
     },
     {
       "theGoal": "3 year goal",
       "yearGoal": "1 Year Goal",
-      "id": "cf91"
+      "id": "cf91",
+      "mark": "notDone"
     },
     {
       "id": "d63c",
       "theGoal": "5 year goal",
-      "yearGoal": "5 Year Goal"
+      "yearGoal": "5 Year Goal",
+      "mark": "notDone"
     },
     {
-      "theGoal": "Reload",
+      "mark": "notDone",
+      "theGoal": "To Test Mark",
+      "yearGoal": "3 Year Goal",
       "id": "e5ef"
     },
     {
-      "id": "b4d3",
+      "mark": "notDone",
       "theGoal": "Ben 10",
-      "yearGoal": "10 Year Goal"
+      "yearGoal": "10 Year Goal",
+      "id": "b4d3"
     },
     {
-      "id": "117c",
-      "theGoal": "test2",
-      "yearGoal": "10 Year Goal"
+      "theGoal": "same Name Error",
+      "id": "117c"
     },
     {
       "id": "7bcc",
       "theGoal": "test3",
-      "yearGoal": "5 Year Goal"
+      "yearGoal": "5 Year Goal",
+      "mark": "notDone"
     },
     {
       "id": "de34",
       "theGoal": "test4",
-      "yearGoal": "5 Year Goal"
+      "yearGoal": "5 Year Goal",
+      "mark": "notDone"
     },
     {
       "id": "def5",
       "theGoal": "abcdefghi",
-      "yearGoal": "10 Year Goal"
+      "yearGoal": "10 Year Goal",
+      "mark": "notDone"
     }
   ]
 }

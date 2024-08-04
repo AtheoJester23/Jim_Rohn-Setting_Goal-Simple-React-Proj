@@ -5,7 +5,7 @@ const GoalList = ({ data, handleDelete }) => {
   const [theGoal, setGoal] = useState("");
   const [editYear, setEditYear] = useState(null);
   const [yearGoal, setYearGoal] = useState("");
-  const [mark, setMark] = useState("unchecked");
+  const [mark, setMark] = useState("notDone");
 
   const handleEdit = (id) => {
     setEditDrop(id);
@@ -43,8 +43,18 @@ const GoalList = ({ data, handleDelete }) => {
     });
   };
 
-  const handleCheckMark = (id) => {
-    // Add something to this
+  const handleCheckMark = (id, currentMark, theGoal, yearGoal) => {
+    const markUpdate = currentMark === "notDone" ? "Done" : "notDone";
+    const updatedMark = { mark: markUpdate, theGoal, yearGoal };
+
+    fetch(`http://localhost:8000/Goal/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedMark),
+    }).then(() => {
+      setMark(markUpdate);
+      window.location.reload();
+    });
   };
 
   return (
@@ -55,8 +65,18 @@ const GoalList = ({ data, handleDelete }) => {
             <div className="goal-item-content">
               <div>
                 <div className="d-flex gap-2 justify-content-center align-items-center">
-                  <button className="btn btn-dark border checkbox d-flex justify-content-center align-items-center">
-                    {mark === "checked" && <i class="bi bi-check"></i>}
+                  <button
+                    className="btn btn-dark border checkbox d-flex justify-content-center align-items-center"
+                    onClick={() =>
+                      handleCheckMark(
+                        aGoal.id,
+                        aGoal.mark,
+                        aGoal.theGoal,
+                        aGoal.yearGoal
+                      )
+                    }
+                  >
+                    {aGoal.mark === "Done" && <i class="bi bi-check"></i>}
                   </button>
                   <p className="goal-text fw-bold">{aGoal.theGoal}</p>
                 </div>
