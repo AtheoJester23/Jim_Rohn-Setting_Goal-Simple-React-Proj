@@ -105,6 +105,22 @@ const NextTen = ({ filteredData }) => {
           <div>{data && <TenYearGoal data={data} />}</div>
         </div>
       </div>
+
+      <div className="text-center text-warning border m-4">
+        <h2 className="display-2">Notes:</h2>
+        <p className="lead text-warning text-center fst-italic mt-3">
+          &#8226; When you accomplish some goal, you need some more to
+          accomplish - Jim Rohn
+        </p>
+        <p className="lead text-warning text-center fst-italic mt-3">
+          &#8226; If its just a goal that is really important to you and you
+          finally reached it, celebrate - Jim Rohn
+        </p>
+        <p className="lead text-warning text-center fst-italic mt-3">
+          &#8226; If the family together finally reaches a goal, celebrate with
+          the family- Jim Rohn
+        </p>
+      </div>
     </div>
   );
 };

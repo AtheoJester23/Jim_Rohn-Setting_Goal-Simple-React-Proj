@@ -5,3 +5,48 @@ body{
 .navnav{
   background-color: rgb(33,33,33);
 }
+
+.goal-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px;
+  max-height: 90vh; /* Adjust this value as needed */
+  box-sizing: border-box;
+  scrollbar-gutter: stable;
+}
+
+.goal-item {
+  background-color: #DAA520; /* Adjust the color as needed */
+  color: rgb(24,24,24); /* Adjust the color as needed */
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between; /* This will align items horizontally */
+  align-items: center; /* This will align items vertically */
+  width: 100%; /* Let the width be determined by the container */
+  box-sizing: border-box;
+}
+
+.goal-text{
+  margin: 0;
+  color: rgb(24,24,24);
+  flex-grow: 1; /* Allow the text to grow */
+}
+
+.goal-menu {
+  margin-left: 10px; /* Adjust this value to add spacing between text and menu */
+}
+
+.goal-item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.checkbox{
+  height: 25px;
+  width: 25px;
+}

@@ -12,6 +12,18 @@ const Accomplished = () => {
   const [accompCount, setAccompCount] = useState(0);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    fetch("http://localhost:8000/Something")
+      .then((response) => response.json())
+      .then((data) => {
+        setAccompCount(data.length);
+        console.log(`Number of Pages: ${data.length}`);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
   const handleDelete = (id) => {
     fetch("http://localhost:8000/Something/" + id, {
       method: "DELETE",
@@ -48,7 +60,12 @@ const Accomplished = () => {
           />
 
           {!pending ? (
-            <button className="btn btn-success text-light">Submit</button>
+            <button
+              className="btn btn-success text-light"
+              disabled={!accomp.trim()}
+            >
+              Submit
+            </button>
           ) : (
             <button disabled className="btn btn-danger text-light">
               Wait...

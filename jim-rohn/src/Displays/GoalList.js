@@ -5,6 +5,7 @@ const GoalList = ({ data, handleDelete }) => {
   const [theGoal, setGoal] = useState("");
   const [editYear, setEditYear] = useState(null);
   const [yearGoal, setYearGoal] = useState("");
+  const [mark, setMark] = useState("unchecked");
 
   const handleEdit = (id) => {
     setEditDrop(id);
@@ -41,13 +42,26 @@ const GoalList = ({ data, handleDelete }) => {
       window.location.reload();
     });
   };
+
+  const handleCheckMark = (id) => {
+    // Add something to this
+  };
+
   return (
-    <div>
+    <div className="goal-container">
       {data.map((aGoal) => (
-        <div key={aGoal.id} className="d-flex align-items-center">
+        <div key={aGoal.id} className="goal-item">
           {editDrop !== aGoal.theGoal && (
-            <div className="d-flex gap-3">
-              <p className="text-light">{aGoal.theGoal}</p>
+            <div className="goal-item-content">
+              <div>
+                <div className="d-flex gap-2 justify-content-center align-items-center">
+                  <button className="btn btn-dark border checkbox d-flex justify-content-center align-items-center">
+                    {mark === "checked" && <i class="bi bi-check"></i>}
+                  </button>
+                  <p className="goal-text fw-bold">{aGoal.theGoal}</p>
+                </div>
+                <p className="goal-text">{aGoal.yearGoal}</p>
+              </div>
 
               {editYear === aGoal.id && (
                 <div>
@@ -73,7 +87,7 @@ const GoalList = ({ data, handleDelete }) => {
                 </div>
               )}
 
-              <div className="btn-group">
+              <div className="btn-group goal-menu">
                 <div
                   type="button"
                   id="dropdownMenuButton"
