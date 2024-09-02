@@ -1,4 +1,6 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Tooltip from "../toolTip";
+import * as bootstrap from "bootstrap";
 
 const GoalList = ({ data, handleDelete }) => {
   const [editDrop, setEditDrop] = useState(null);
@@ -6,6 +8,12 @@ const GoalList = ({ data, handleDelete }) => {
   const [editYear, setEditYear] = useState(null);
   const [yearGoal, setYearGoal] = useState("");
   const [mark, setMark] = useState("notDone");
+
+  useEffect(() => {
+    // Initialize Bootstrap dropdowns
+    const dropdownElements = document.querySelectorAll(".dropdown-toggle");
+    dropdownElements.forEach((dropdown) => new bootstrap.Dropdown(dropdown));
+  }, []);
 
   const handleEdit = (id) => {
     setEditDrop(id);
@@ -31,8 +39,8 @@ const GoalList = ({ data, handleDelete }) => {
     setEditDrop(null);
   };
 
-  const handleOk = (id) => {
-    const renamedGoal = { theGoal };
+  const handleOk = (id, yearGoal, mark) => {
+    const renamedGoal = { theGoal, yearGoal, mark };
 
     fetch("http://localhost:8000/Goal/" + id, {
       method: "PUT",
@@ -58,10 +66,10 @@ const GoalList = ({ data, handleDelete }) => {
   };
 
   return (
-    <div className="goal-container">
+    <div className="goal-container p-5">
       {data.map((aGoal) => (
         <div key={aGoal.id} className="goal-item">
-          {editDrop !== aGoal.theGoal && (
+          {editDrop !== aGoal.id && (
             <div className="goal-item-content">
               <div>
                 <div className="d-flex gap-2 justify-content-center align-items-center">
@@ -78,7 +86,11 @@ const GoalList = ({ data, handleDelete }) => {
                   >
                     {aGoal.mark === "Done" && <i class="bi bi-check"></i>}
                   </button>
-                  <p className="goal-text fw-bold">{aGoal.theGoal}</p>
+                  <Tooltip text={aGoal.theGoal}>
+                    <p className="goal-text fw-bold truncate">
+                      {aGoal.theGoal}
+                    </p>
+                  </Tooltip>
                 </div>
                 <p className="goal-text">{aGoal.yearGoal}</p>
               </div>
@@ -110,7 +122,8 @@ const GoalList = ({ data, handleDelete }) => {
               <div className="btn-group goal-menu">
                 <div
                   type="button"
-                  id="dropdownMenuButton"
+                  className="btn dropdown-toggle"
+                  id={`dropdownMenuButton-${aGoal.id}`}
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
@@ -118,11 +131,11 @@ const GoalList = ({ data, handleDelete }) => {
                 </div>
                 <ul
                   className="dropdown-menu"
-                  aria-labelledby="dropdownMenuButton"
+                  aria-labelledby={`dropdownMenuButton-${aGoal.id}`}
                 >
                   <li>
                     <a
-                      onClick={() => handleEdit(aGoal.theGoal)}
+                      onClick={() => handleEdit(aGoal.id)}
                       className="dropdown-item"
                       href="#"
                     >
@@ -154,7 +167,7 @@ const GoalList = ({ data, handleDelete }) => {
               </div>
             </div>
           )}
-          {editDrop === aGoal.theGoal && (
+          {editDrop === aGoal.id && (
             <div>
               <input
                 type="text"
@@ -172,7 +185,7 @@ const GoalList = ({ data, handleDelete }) => {
               </button>
 
               <button
-                onClick={() => handleOk(aGoal.id)}
+                onClick={() => handleOk(aGoal.id, aGoal.yearGoal, aGoal.mark)}
                 className="btn btn-success"
                 disabled={!theGoal.trim()}
               >

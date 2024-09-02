@@ -81,7 +81,7 @@ const NextTen = ({ filteredData }) => {
         </button>
       </form>
 
-      <div className="border border-light p-5 m-4 text-light">
+      <div className="border border-light m-4 text-light">
         {loading && <p>Loading...</p>}
         {err && <p>{err}</p>}
         {data && <GoalList data={data} handleDelete={handleDelete} />}
@@ -121,6 +121,16 @@ const NextTen = ({ filteredData }) => {
           the family- Jim Rohn
         </p>
       </div>
+
+      <button
+        type="button"
+        class="btn btn-secondary"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Tooltip on top"
+      >
+        Tooltip on top
+      </button>
     </div>
   );
 };

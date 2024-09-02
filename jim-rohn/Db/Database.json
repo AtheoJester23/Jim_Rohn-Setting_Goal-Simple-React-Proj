@@ -33,15 +33,16 @@
   ],
   "Goal": [
     {
+      "mark": "notDone",
       "theGoal": "testagain",
       "yearGoal": "3 Year Goal",
       "id": "70ab"
     },
     {
-      "id": "e66e",
+      "mark": "notDone",
       "theGoal": "Make Music",
       "yearGoal": "1 Year Goal",
-      "mark": "notDone"
+      "id": "e66e"
     },
     {
       "id": "eff5",
@@ -63,8 +64,8 @@
     },
     {
       "mark": "notDone",
-      "theGoal": "To Test Mark",
-      "yearGoal": "3 Year Goal",
+      "theGoal": "Ben 10",
+      "yearGoal": "5 Year Goal",
       "id": "e5ef"
     },
     {
@@ -74,14 +75,14 @@
       "id": "b4d3"
     },
     {
-      "theGoal": "same Name Error",
+      "theGoal": "Testing if year will still be included",
+      "yearGoal": "3 Year Goal",
       "id": "117c"
     },
     {
-      "id": "7bcc",
-      "theGoal": "test3",
+      "theGoal": "same Name Error",
       "yearGoal": "5 Year Goal",
-      "mark": "notDone"
+      "id": "7bcc"
     },
     {
       "id": "de34",

@@ -6,6 +6,7 @@ body{
   background-color: rgb(33,33,33);
 }
 
+/* How the grid worked: */
 .goal-container{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -15,6 +16,7 @@ body{
   max-height: 90vh; /* Adjust this value as needed */
   box-sizing: border-box;
   scrollbar-gutter: stable;
+  z-index: 1;
 }
 
 .goal-item {
@@ -27,9 +29,11 @@ body{
   align-items: center; /* This will align items vertically */
   width: 100%; /* Let the width be determined by the container */
   box-sizing: border-box;
+  position: relative;
 }
 
 .goal-text{
+  user-select: none;
   margin: 0;
   color: rgb(24,24,24);
   flex-grow: 1; /* Allow the text to grow */
@@ -37,6 +41,10 @@ body{
 
 .goal-menu {
   margin-left: 10px; /* Adjust this value to add spacing between text and menu */
+}
+
+.goal-menu .dropdown-menu {
+  z-index: 1050; /* Ensures the dropdown is above the tooltip */
 }
 
 .goal-item-content {
@@ -49,4 +57,41 @@ body{
 .checkbox{
   height: 25px;
   width: 25px;
+}
+
+/* How the text limits two lines: */
+.truncate {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* How tooltip appears */
+.ToolTipText{
+  position: absolute;
+  cursor: pointer;
+  left: 50%;
+  top: -50px; /* Adjust this value to move the tooltip above the toolTip div */
+  transform: translateX(-50%);
+  background-color: white;
+  text-align: center;
+  white-space: nowrap;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 10; /* Ensure the tooltip is above other elements */
+}
+
+.toolTip{
+  position: relative;
+  cursor: pointer;
+}
+
+.toolTip:hover .ToolTipText{
+  visibility: visible;
+  opacity: 1;
 }
