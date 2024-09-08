@@ -8,6 +8,10 @@ const GoalList = ({ data, handleDelete }) => {
   const [editYear, setEditYear] = useState(null);
   const [yearGoal, setYearGoal] = useState("");
   const [mark, setMark] = useState("notDone");
+  const [dropdownVisible, setDropdownVisible] = useState(null);
+
+  // dropdown settings:
+  const theDropdown = document.querySelector(".drpdwn");
 
   useEffect(() => {
     // Initialize Bootstrap dropdowns
@@ -37,6 +41,7 @@ const GoalList = ({ data, handleDelete }) => {
 
   const handleCancel = () => {
     setEditDrop(null);
+    setDropdownVisible(null);
   };
 
   const handleOk = (id, yearGoal, mark) => {
@@ -63,6 +68,11 @@ const GoalList = ({ data, handleDelete }) => {
       setMark(markUpdate);
       window.location.reload();
     });
+  };
+
+  // Toggle dropdown visibility
+  const handleDropdown = (id) => {
+    setDropdownVisible(dropdownVisible === id ? null : id);
   };
 
   return (
@@ -122,15 +132,15 @@ const GoalList = ({ data, handleDelete }) => {
               <div className="btn-group goal-menu">
                 <div
                   type="button"
-                  className="btn dropdown-toggle"
-                  id={`dropdownMenuButton-${aGoal.id}`}
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
+                  className="btn drpdwn"
+                  onClick={() => handleDropdown(aGoal.id)}
                 >
                   <i className="bi bi-three-dots"></i>
                 </div>
                 <ul
-                  className="dropdown-menu"
+                  className={`drpdwn-menu ${
+                    dropdownVisible === aGoal.id ? "showTheDrpdwn" : ""
+                  }`}
                   aria-labelledby={`dropdownMenuButton-${aGoal.id}`}
                 >
                   <li>
@@ -152,7 +162,13 @@ const GoalList = ({ data, handleDelete }) => {
                     </a>
                   </li>
                   <li>
-                    <hr className="dropdown-divider" />
+                    <a
+                      onClick={handleCancel}
+                      className="dropdown-item"
+                      href="#"
+                    >
+                      Cancel
+                    </a>
                   </li>
                   <li>
                     <a

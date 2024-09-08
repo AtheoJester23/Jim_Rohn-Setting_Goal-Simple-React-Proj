@@ -95,3 +95,28 @@ body{
   visibility: visible;
   opacity: 1;
 }
+
+/* dropdown */
+
+.drpdwn{
+  position: relative;
+}
+
+.drpdwn:hover{
+  background-color: green;
+}
+
+.drpdwn-menu{
+  display: none;
+  position: absolute;
+  background-color: whitesmoke;
+  z-index: 1;
+}
+
+.drpdwn-menu a:hover{
+  background-color: gold;
+}
+
+.showTheDrpdwn{
+  display: block;
+}

@@ -39,16 +39,16 @@
       "id": "70ab"
     },
     {
-      "mark": "notDone",
+      "mark": "Done",
       "theGoal": "Make Music",
       "yearGoal": "1 Year Goal",
       "id": "e66e"
     },
     {
-      "id": "eff5",
+      "mark": "Done",
       "theGoal": "Buff me up",
       "yearGoal": "1 Year Goal",
-      "mark": "notDone"
+      "id": "eff5"
     },
     {
       "theGoal": "3 year goal",
@@ -69,14 +69,15 @@
       "id": "e5ef"
     },
     {
-      "mark": "notDone",
+      "mark": "Done",
       "theGoal": "Ben 10",
       "yearGoal": "10 Year Goal",
       "id": "b4d3"
     },
     {
-      "theGoal": "Testing if year will still be included",
+      "theGoal": "Testing this is a rename of a long title",
       "yearGoal": "3 Year Goal",
+      "mark": "notDone",
       "id": "117c"
     },
     {
@@ -88,12 +89,6 @@
       "id": "de34",
       "theGoal": "test4",
       "yearGoal": "5 Year Goal",
-      "mark": "notDone"
-    },
-    {
-      "id": "def5",
-      "theGoal": "abcdefghi",
-      "yearGoal": "10 Year Goal",
       "mark": "notDone"
     }
   ]
