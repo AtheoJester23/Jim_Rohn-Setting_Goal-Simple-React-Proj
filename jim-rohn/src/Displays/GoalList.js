@@ -25,10 +25,11 @@ const GoalList = ({ data, handleDelete }) => {
 
   const handleYearEdit = (id) => {
     setEditYear(id);
+    setDropdownVisible(null);
   };
 
-  const handleYearEditOk = (id, theGoal) => {
-    const newYear = { theGoal, yearGoal };
+  const handleYearEditOk = (id, theGoal, mark) => {
+    const newYear = { theGoal, yearGoal, mark };
 
     fetch("http://localhost:8000/Goal/" + id, {
       method: "PUT",
@@ -42,6 +43,8 @@ const GoalList = ({ data, handleDelete }) => {
   const handleCancel = () => {
     setEditDrop(null);
     setDropdownVisible(null);
+    setEditYear(null);
+    setYearGoal("");
   };
 
   const handleOk = (id, yearGoal, mark) => {
@@ -73,6 +76,8 @@ const GoalList = ({ data, handleDelete }) => {
   // Toggle dropdown visibility
   const handleDropdown = (id) => {
     setDropdownVisible(dropdownVisible === id ? null : id);
+    setEditYear(null);
+    setYearGoal("");
   };
 
   return (
@@ -81,32 +86,36 @@ const GoalList = ({ data, handleDelete }) => {
         <div key={aGoal.id} className="goal-item">
           {editDrop !== aGoal.id && (
             <div className="goal-item-content">
-              <div>
-                <div className="d-flex gap-2 justify-content-center align-items-center">
-                  <button
-                    className="btn btn-dark border checkbox d-flex justify-content-center align-items-center"
-                    onClick={() =>
-                      handleCheckMark(
-                        aGoal.id,
-                        aGoal.mark,
-                        aGoal.theGoal,
-                        aGoal.yearGoal
-                      )
-                    }
-                  >
-                    {aGoal.mark === "Done" && <i class="bi bi-check"></i>}
-                  </button>
-                  <Tooltip text={aGoal.theGoal}>
-                    <p className="goal-text fw-bold truncate">
-                      {aGoal.theGoal}
-                    </p>
-                  </Tooltip>
+              {editYear !== aGoal.id && ( // Only show this section when 'editYear' is NOT equal to 'aGoal.id'
+                <div className="box_and_title">
+                  <div className="d-flex gap-2 justify-content-center align-items-center">
+                    <button
+                      className="btn btn-dark border checkbox d-flex justify-content-center align-items-center"
+                      onClick={() =>
+                        handleCheckMark(
+                          aGoal.id,
+                          aGoal.mark,
+                          aGoal.theGoal,
+                          aGoal.yearGoal
+                        )
+                      }
+                    >
+                      {aGoal.mark === "Done" && <i class="bi bi-check"></i>}
+                    </button>
+                    <Tooltip text={aGoal.theGoal}>
+                      <p className="goal-text fw-bold truncate">
+                        {aGoal.theGoal}
+                      </p>
+                    </Tooltip>
+                  </div>
+                  <p className="goal-text">{aGoal.yearGoal}</p>
                 </div>
-                <p className="goal-text">{aGoal.yearGoal}</p>
-              </div>
+              )}
 
               {editYear === aGoal.id && (
-                <div>
+                <div class="editingYear">
+                  <p className="goal-text fw-bold truncate">{aGoal.theGoal}</p>
+
                   <select
                     value={yearGoal}
                     onChange={(e) => setYearGoal(e.target.value)}
@@ -120,67 +129,77 @@ const GoalList = ({ data, handleDelete }) => {
                     <option value="10 Year Goal">10 Years</option>
                   </select>
 
-                  <button
-                    onClick={() => handleYearEditOk(aGoal.id, aGoal.theGoal)}
-                    className="btn btn-success"
-                  >
-                    Ok
-                  </button>
+                  <div className="editYearButtons">
+                    <button
+                      onClick={() =>
+                        handleYearEditOk(aGoal.id, aGoal.theGoal, aGoal.mark)
+                      }
+                      className="btn btn-success"
+                      disabled={!yearGoal}
+                    >
+                      Ok
+                    </button>
+                    <button className="btn btn-danger" onClick={handleCancel}>
+                      Cancel
+                    </button>
+                  </div>
                 </div>
               )}
 
-              <div className="btn-group goal-menu">
-                <div
-                  type="button"
-                  className="btn drpdwn"
-                  onClick={() => handleDropdown(aGoal.id)}
-                >
-                  <i className="bi bi-three-dots"></i>
+              {editYear !== aGoal.id && ( // So that it won't be shown when we're changing the year
+                <div className="goal-menu">
+                  <div
+                    type="button"
+                    className="btn drpdwn"
+                    onClick={() => handleDropdown(aGoal.id)}
+                  >
+                    <i className="bi bi-three-dots"></i>
+                  </div>
+                  <section
+                    className={`drpdwn-menu ${
+                      dropdownVisible === aGoal.id ? "showTheDrpdwn" : ""
+                    }`}
+                    aria-labelledby={`dropdownMenuButton-${aGoal.id}`}
+                  >
+                    <div>
+                      <a
+                        onClick={() => handleEdit(aGoal.id)}
+                        className="dropdown-item"
+                        href="#"
+                      >
+                        Rename
+                      </a>
+                    </div>
+                    <div>
+                      <a
+                        onClick={() => handleYearEdit(aGoal.id)}
+                        className="dropdown-item"
+                        href="#"
+                      >
+                        Change Year Goal
+                      </a>
+                    </div>
+                    <div>
+                      <a
+                        onClick={handleCancel}
+                        className="dropdown-item"
+                        href="#"
+                      >
+                        Cancel
+                      </a>
+                    </div>
+                    <div>
+                      <a
+                        onClick={() => handleDelete(aGoal.id)}
+                        className="dropdown-item"
+                        href="#"
+                      >
+                        Delete
+                      </a>
+                    </div>
+                  </section>
                 </div>
-                <ul
-                  className={`drpdwn-menu ${
-                    dropdownVisible === aGoal.id ? "showTheDrpdwn" : ""
-                  }`}
-                  aria-labelledby={`dropdownMenuButton-${aGoal.id}`}
-                >
-                  <li>
-                    <a
-                      onClick={() => handleEdit(aGoal.id)}
-                      className="dropdown-item"
-                      href="#"
-                    >
-                      Rename
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      onClick={() => handleYearEdit(aGoal.id)}
-                      className="dropdown-item"
-                      href="#"
-                    >
-                      Change Year Goal
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      onClick={handleCancel}
-                      className="dropdown-item"
-                      href="#"
-                    >
-                      Cancel
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      onClick={() => handleDelete(aGoal.id)}
-                      className="dropdown-item"
-                      href="#"
-                    >
-                      Delete
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              )}
             </div>
           )}
           {editDrop === aGoal.id && (

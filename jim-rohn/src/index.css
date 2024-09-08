@@ -41,6 +41,7 @@ body{
 
 .goal-menu {
   margin-left: 10px; /* Adjust this value to add spacing between text and menu */
+  z-index: 2004;
 }
 
 .goal-menu .dropdown-menu {
@@ -49,6 +50,7 @@ body{
 
 .goal-item-content {
   display: flex;
+  position: relative;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -111,6 +113,10 @@ body{
   position: absolute;
   background-color: whitesmoke;
   z-index: 1;
+  padding: 10px;
+  right: 0;
+  top: -7px;
+  border-radius: 10px;
 }
 
 .drpdwn-menu a:hover{
@@ -119,4 +125,25 @@ body{
 
 .showTheDrpdwn{
   display: block;
+}
+
+.remove{
+  display: none;
+}
+
+.editingYear{
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: white;
+  padding: 15px;
+  flex-direction: column;
+  border-radius: 15px;
+  gap: 10px;
+  z-index: 2003;
+}
+
+.editYearButtons{
+  display: flex;
 }

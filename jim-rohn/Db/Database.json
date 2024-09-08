@@ -33,15 +33,15 @@
   ],
   "Goal": [
     {
-      "mark": "notDone",
+      "mark": "Done",
       "theGoal": "testagain",
-      "yearGoal": "3 Year Goal",
+      "yearGoal": "10 Year Goal",
       "id": "70ab"
     },
     {
-      "mark": "Done",
       "theGoal": "Make Music",
-      "yearGoal": "1 Year Goal",
+      "yearGoal": "10 Year Goal",
+      "mark": "Done",
       "id": "e66e"
     },
     {
@@ -69,15 +69,9 @@
       "id": "e5ef"
     },
     {
-      "mark": "Done",
-      "theGoal": "Ben 10",
-      "yearGoal": "10 Year Goal",
-      "id": "b4d3"
-    },
-    {
       "theGoal": "Testing this is a rename of a long title",
-      "yearGoal": "3 Year Goal",
-      "mark": "notDone",
+      "yearGoal": "10 Year Goal",
+      "mark": "Done",
       "id": "117c"
     },
     {
