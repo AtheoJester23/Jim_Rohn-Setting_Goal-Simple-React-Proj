@@ -33,28 +33,22 @@
   ],
   "Goal": [
     {
-      "mark": "Done",
+      "mark": "notDone",
       "theGoal": "testagain",
       "yearGoal": "10 Year Goal",
       "id": "70ab"
     },
     {
+      "mark": "Done",
       "theGoal": "Make Music",
       "yearGoal": "10 Year Goal",
-      "mark": "Done",
       "id": "e66e"
     },
     {
-      "mark": "Done",
-      "theGoal": "Buff me up",
-      "yearGoal": "1 Year Goal",
-      "id": "eff5"
-    },
-    {
+      "mark": "notDone",
       "theGoal": "3 year goal",
       "yearGoal": "1 Year Goal",
-      "id": "cf91",
-      "mark": "notDone"
+      "id": "cf91"
     },
     {
       "id": "d63c",
@@ -69,19 +63,26 @@
       "id": "e5ef"
     },
     {
-      "theGoal": "Testing this is a rename of a long title",
+      "theGoal": "Testing this is a much longer rename of a long title testing testing testing",
       "yearGoal": "10 Year Goal",
-      "mark": "Done",
+      "mark": "notDone",
       "id": "117c"
     },
     {
+      "mark": "Done",
       "theGoal": "same Name Error",
-      "yearGoal": "5 Year Goal",
+      "yearGoal": "3 Year Goal",
       "id": "7bcc"
     },
     {
-      "id": "de34",
-      "theGoal": "test4",
+      "mark": "Done",
+      "theGoal": "Thisistheonethatisnotbeingtruncatedbecausetheirisnospacebar",
+      "yearGoal": "5 Year Goal",
+      "id": "e3ab"
+    },
+    {
+      "id": "b66f",
+      "theGoal": "abcde",
       "yearGoal": "5 Year Goal",
       "mark": "notDone"
     }

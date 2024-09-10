@@ -30,6 +30,11 @@ body{
   width: 100%; /* Let the width be determined by the container */
   box-sizing: border-box;
   position: relative;
+  cursor: pointer;
+}
+
+.no-click {
+  pointer-events: none;
 }
 
 .goal-text{
@@ -61,6 +66,10 @@ body{
   width: 25px;
 }
 
+.strikethrough{
+  text-decoration: line-through;
+}
+
 /* How the text limits two lines: */
 .truncate {
   display: -webkit-box;
@@ -68,6 +77,8 @@ body{
   -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
+  word-break: break-all; /* Break long words */
+  overflow-wrap: break-word; /* Handle word breaking */
 }
 
 /* How tooltip appears */
@@ -131,6 +142,18 @@ body{
   display: none;
 }
 
+.Renaming{
+  background-color: white;
+  position: absolute;
+  left: -15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 2006;
+}
+
 .editingYear{
   display: flex;
   position: absolute;
@@ -141,9 +164,22 @@ body{
   flex-direction: column;
   border-radius: 15px;
   gap: 10px;
-  z-index: 2003;
+  z-index: 2007;
 }
 
 .editYearButtons{
   display: flex;
+}
+
+.toDel{
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: white;
+  padding: 15px;
+  flex-direction: column;
+  border-radius: 15px;
+  gap: 10px;
+  z-index: 2005;
 }

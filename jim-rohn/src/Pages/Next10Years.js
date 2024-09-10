@@ -9,6 +9,7 @@ import TenYearGoal from "../Displays/YearGoals/TenYearGoal";
 
 const NextTen = ({ filteredData }) => {
   const [accompCount, setAccompCount] = useState(0);
+  const [mark, setMark] = useState("notDone");
   const [theGoal, setGoal] = useState("");
   const [pending, setPending] = useState(false);
   const { data, setData, loading, err } = useFetch(
@@ -39,7 +40,7 @@ const NextTen = ({ filteredData }) => {
   };
 
   const handleSub = (e) => {
-    const Goalset = { theGoal, yearGoal };
+    const Goalset = { theGoal, yearGoal, mark };
     setPending(true);
 
     fetch("http://localhost:8000/Goal", {
@@ -55,6 +56,8 @@ const NextTen = ({ filteredData }) => {
 
   return (
     <div className="container m-5">
+      <h1 className="display-1 text-white bg-warning d-block mt-5">Testing</h1>
+
       <form onSubmit={handleSub}>
         <label className="text-light">Goal: </label>
         <input
@@ -121,16 +124,6 @@ const NextTen = ({ filteredData }) => {
           the family- Jim Rohn
         </p>
       </div>
-
-      <button
-        type="button"
-        class="btn btn-secondary"
-        data-toggle="tooltip"
-        data-placement="top"
-        title="Tooltip on top"
-      >
-        Tooltip on top
-      </button>
     </div>
   );
 };
