@@ -4,6 +4,7 @@ import Home from "./Home";
 import Navnav from "./Navbar";
 import Accomplished from "./Pages/Accomplished";
 import NextTen from "./Pages/Next10Years";
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
 function App() {
   return (

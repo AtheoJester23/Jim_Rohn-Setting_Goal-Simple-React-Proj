@@ -39,7 +39,7 @@
       "id": "70ab"
     },
     {
-      "mark": "Done",
+      "mark": "notDone",
       "theGoal": "Make Music",
       "yearGoal": "10 Year Goal",
       "id": "e66e"
@@ -75,7 +75,7 @@
       "id": "7bcc"
     },
     {
-      "mark": "Done",
+      "mark": "notDone",
       "theGoal": "Thisistheonethatisnotbeingtruncatedbecausetheirisnospacebar",
       "yearGoal": "5 Year Goal",
       "id": "e3ab"
@@ -84,6 +84,12 @@
       "id": "b66f",
       "theGoal": "abcde",
       "yearGoal": "5 Year Goal",
+      "mark": "notDone"
+    },
+    {
+      "id": "c831",
+      "theGoal": "abcsdwer",
+      "yearGoal": "1 Year Goal",
       "mark": "notDone"
     }
   ]

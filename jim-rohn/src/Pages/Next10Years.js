@@ -6,6 +6,7 @@ import ThreeYearGoal from "../Displays/YearGoals/ThreeYearGoal";
 import FiveYearGoal from "../Displays/YearGoals/FiveYearGoal";
 import { Windows } from "react-bootstrap-icons";
 import TenYearGoal from "../Displays/YearGoals/TenYearGoal";
+import vidTwo from "../Videos/NextTen.mp4";
 
 const NextTen = ({ filteredData }) => {
   const [accompCount, setAccompCount] = useState(0);
@@ -56,7 +57,20 @@ const NextTen = ({ filteredData }) => {
 
   return (
     <div className="container m-5">
-      <h1 className="display-1 text-white bg-warning d-block mt-5">Testing</h1>
+      <section className="vidSec">
+        <video
+          id="video"
+          width="700"
+          controls
+          className="Intro m-5 rounded-4"
+          autoPlay
+          loop
+          muted
+        >
+          <source src={vidTwo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </section>
 
       <form onSubmit={handleSub}>
         <label className="text-light">Goal: </label>

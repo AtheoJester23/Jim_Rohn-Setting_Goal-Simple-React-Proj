@@ -1,9 +1,21 @@
 body{
-  background-color: rgb(24,24,24);
+  background-color: #090909;
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
 
 .navnav{
-  background-color: rgb(33,33,33);
+  background-color: rgb(160, 35, 52);
+}
+
+.brandName{
+  width: 20%;
+  height: 20%;
+  margin-left: 10px;
 }
 
 /* How the grid worked: */
@@ -182,4 +194,10 @@ body{
   border-radius: 15px;
   gap: 10px;
   z-index: 2005;
+}
+
+/* Videos: */
+.vidSec{
+  display: flex;
+  justify-content: center;
 }
