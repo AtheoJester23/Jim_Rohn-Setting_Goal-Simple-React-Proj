@@ -2,11 +2,18 @@ body{
   background-color: #090909;
   overflow: auto;
   scrollbar-width: none; /* Firefox */
+  height: 2000px;
 }
 
-body::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
+::-webkit-scrollbar{
+    width: 8px;
 }
+
+::-webkit-scrollbar-thumb{
+    background-color: #DAA520;
+    border-radius: 10px;
+}
+
 
 .navnav{
   background-color: rgb(160, 35, 52);

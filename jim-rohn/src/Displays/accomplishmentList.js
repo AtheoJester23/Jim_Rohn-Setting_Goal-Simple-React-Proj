@@ -1,6 +1,7 @@
 import { useState } from "react";
+import accompVid from "../Videos/Accomplishments.mp4";
 
-const AccomplishmentList = ({ data, handleDelete }) => {
+const AccomplishmentList = ({ data, handleDelete, setData }) => {
   const [accomp, setAccomp] = useState("");
   const [editingId, setEditingId] = useState(null);
 
@@ -11,7 +12,13 @@ const AccomplishmentList = ({ data, handleDelete }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newOne),
     }).then(() => {
-      window.location.reload();
+      // Update the specific item in the data list
+      setData(
+        data.map((accList) =>
+          accList.id === id ? { ...accList, accomp: newOne.accomp } : accList
+        )
+      );
+      setEditingId(null); // Reset editing state
     });
   };
 
