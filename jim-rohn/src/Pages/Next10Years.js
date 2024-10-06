@@ -20,6 +20,7 @@ const NextTen = ({ filteredData }) => {
   // Initialize task and noSort with empty arrays
   const [task, setTask] = useState([...(data || [])]);
   const [noSort, setNoSort] = useState([...(data || [])]);
+  const [sortedTasks, setSortedTasks] = useState([]);
 
   const [isSorted, setIsSorted] = useState(false);
 
@@ -42,6 +43,13 @@ const NextTen = ({ filteredData }) => {
     if (data) {
       setTask([...data]); // Update task when data changes
       setNoSort([...data]); // Update noSort when data changes
+      console.log("The data has been changed...");
+
+      // Create sortedTasks here
+      const sorted = [...data].sort(
+        (a, b) => getYearValue(a.yearGoal) - getYearValue(b.yearGoal)
+      );
+      setSortedTasks(sorted); // Store sorted data
     }
   }, [data]);
 
@@ -146,7 +154,11 @@ const NextTen = ({ filteredData }) => {
         {loading && <p>Loading...</p>}
         {err && <p>{err}</p>}
         {data && (
-          <GoalList data={task} handleDelete={handleDelete} setData={setData} />
+          <GoalList
+            data={isSorted ? sortedTasks : task}
+            handleDelete={handleDelete}
+            setData={setData}
+          />
         )}
       </div>
 

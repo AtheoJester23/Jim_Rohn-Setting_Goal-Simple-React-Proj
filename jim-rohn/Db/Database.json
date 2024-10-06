@@ -34,18 +34,18 @@
   "Goal": [
     {
       "theGoal": "error pa?",
-      "yearGoal": "1 Year Goal",
+      "yearGoal": "10 Year Goal",
       "mark": "notDone",
       "id": "70ab"
     },
     {
-      "mark": "Done",
+      "mark": "notDone",
       "theGoal": "Make Music",
       "yearGoal": "10 Year Goal",
       "id": "e66e"
     },
     {
-      "mark": "Done",
+      "mark": "notDone",
       "theGoal": "three year goal",
       "yearGoal": "10 Year Goal",
       "id": "cf91"
@@ -57,7 +57,7 @@
       "id": "d63c"
     },
     {
-      "mark": "notDone",
+      "mark": "Done",
       "theGoal": "Ben 10",
       "yearGoal": "5 Year Goal",
       "id": "e5ef"
@@ -71,13 +71,13 @@
     {
       "mark": "notDone",
       "theGoal": "Same Name Error",
-      "yearGoal": "3 Year Goal",
+      "yearGoal": "10 Year Goal",
       "id": "7bcc"
     },
     {
-      "mark": "notDone",
       "theGoal": "Thisistheonethatisnotbeingtruncatedbecausetheirisnospacebar",
-      "yearGoal": "5 Year Goal",
+      "yearGoal": "10 Year Goal",
+      "mark": "Done",
       "id": "e3ab"
     },
     {
@@ -87,21 +87,21 @@
       "id": "b66f"
     },
     {
-      "mark": "Done",
       "theGoal": "test",
-      "yearGoal": "3 Year Goal",
+      "yearGoal": "10 Year Goal",
+      "mark": "notDone",
       "id": "8efe"
     },
     {
-      "mark": "notDone",
       "theGoal": "again",
-      "yearGoal": "10 Year Goal",
+      "yearGoal": "5 Year Goal",
+      "mark": "Done",
       "id": "bebb"
     },
     {
-      "mark": "notDone",
       "theGoal": "asdfvcxzcvasdfasd",
-      "yearGoal": "10 Year Goal",
+      "yearGoal": "1 Year Goal",
+      "mark": "Done",
       "id": "7e2d"
     },
     {
