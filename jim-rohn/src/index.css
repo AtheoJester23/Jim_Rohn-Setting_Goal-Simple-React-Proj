@@ -24,6 +24,13 @@ body{
   margin-left: 10px;
 }
 
+.toSort{
+  background-color: orangered;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+}
+
 /* How the grid worked: */
 .goal-container{
   display: grid;

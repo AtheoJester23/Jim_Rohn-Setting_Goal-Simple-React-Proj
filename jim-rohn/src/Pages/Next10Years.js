@@ -22,7 +22,7 @@ const NextTen = ({ filteredData }) => {
   const [noSort, setNoSort] = useState([...(data || [])]);
   const [sortedTasks, setSortedTasks] = useState([]);
 
-  const [isSorted, setIsSorted] = useState(false);
+  const [isSorted, setIsSorted] = useState("");
 
   const [yearGoal, setYearGoal] = useState("");
   const [goalCount, setGoalCount] = useState(0);
@@ -45,11 +45,19 @@ const NextTen = ({ filteredData }) => {
       setNoSort([...data]); // Update noSort when data changes
       console.log("The data has been changed...");
 
-      // Create sortedTasks here
+      console.log(isSorted);
+
       const sorted = [...data].sort(
         (a, b) => getYearValue(a.yearGoal) - getYearValue(b.yearGoal)
       );
       setSortedTasks(sorted); // Store sorted data
+
+      if (isSorted === "Descending") {
+        const sortedDesc = [...data].sort(
+          (a, b) => getYearValue(b.yearGoal) - getYearValue(a.yearGoal)
+        );
+        setSortedTasks(sortedDesc); // Store sorted data
+      }
     }
   }, [data]);
 
@@ -60,17 +68,33 @@ const NextTen = ({ filteredData }) => {
 
   // Function to handle sorting by yearGoal when the button is clicked
   const handleSort = () => {
-    if (!isSorted) {
+    if (isSorted != "Ascending") {
       // Sort tasks based on the yearGoal as a number
       const sortedTasks = [...task].sort(
         (a, b) => getYearValue(a.yearGoal) - getYearValue(b.yearGoal)
       );
       setTask(sortedTasks);
+      setIsSorted("Ascending");
     } else {
       // Reset to the original order
       setTask(noSort);
     }
-    setIsSorted(!isSorted); // Toggle sorted state
+    setIsSorted("");
+  };
+
+  const handleSortDesc = () => {
+    if (isSorted != "Descending") {
+      // Sort tasks based on the yearGoal as a number
+      const sortedTasksDesc = [...task].sort(
+        (a, b) => getYearValue(b.yearGoal) - getYearValue(a.yearGoal)
+      );
+      setTask(sortedTasksDesc);
+      setIsSorted("Descending"); // Set the sorting state
+    } else {
+      // Reset to the original order
+      setTask(noSort);
+    }
+    setIsSorted("");
   };
 
   const handleDelete = (id) => {
@@ -98,7 +122,7 @@ const NextTen = ({ filteredData }) => {
       .then((newData) => {
         setPending(false);
         setGoal("");
-
+        setYearGoal("");
         setData([...data, newData]);
       });
   };
@@ -146,16 +170,26 @@ const NextTen = ({ filteredData }) => {
         </button>
       </form>
 
-      <button onClick={handleSort}>
-        {isSorted ? "Reset" : "Sort by Year"}
-      </button>
+      <div class="toSort">
+        <button onClick={handleSortDesc}>Sort Descending</button>
+
+        <button onClick={handleSort} class="sortAscending">
+          Sort Ascending
+        </button>
+      </div>
 
       <div className="border border-light m-4 text-light">
         {loading && <p>Loading...</p>}
         {err && <p>{err}</p>}
         {data && (
           <GoalList
-            data={isSorted ? sortedTasks : task}
+            data={
+              isSorted === "Ascending"
+                ? sortedTasks
+                : isSorted === "Descending"
+                ? sortedTasks
+                : task
+            }
             handleDelete={handleDelete}
             setData={setData}
           />
