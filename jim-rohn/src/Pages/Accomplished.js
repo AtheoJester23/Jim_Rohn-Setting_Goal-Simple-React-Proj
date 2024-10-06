@@ -135,7 +135,11 @@ const Accomplished = () => {
             />
           )}
 
-          <Link to="/Pages/2" className="btn btn-success">
+          <Link
+            to="/Pages/2"
+            className="btn btn-success"
+            onClick={() => window.scrollTo(0, 0)}
+          >
             Next
           </Link>
         </div>

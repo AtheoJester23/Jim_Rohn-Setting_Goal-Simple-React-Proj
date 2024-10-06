@@ -16,6 +16,13 @@ const NextTen = ({ filteredData }) => {
   const { data, setData, loading, err } = useFetch(
     "http://localhost:8000/Goal"
   );
+
+  // Initialize task and noSort with empty arrays
+  const [task, setTask] = useState([...(data || [])]);
+  const [noSort, setNoSort] = useState([...(data || [])]);
+
+  const [isSorted, setIsSorted] = useState(false);
+
   const [yearGoal, setYearGoal] = useState("");
   const [goalCount, setGoalCount] = useState(0);
 
@@ -31,6 +38,33 @@ const NextTen = ({ filteredData }) => {
       });
   }, []);
 
+  useEffect(() => {
+    if (data) {
+      setTask([...data]); // Update task when data changes
+      setNoSort([...data]); // Update noSort when data changes
+    }
+  }, [data]);
+
+  // Helper function to extract the number from "yearGoal" field
+  const getYearValue = (yearGoal) => {
+    return parseInt(yearGoal.split(" ")[0]);
+  };
+
+  // Function to handle sorting by yearGoal when the button is clicked
+  const handleSort = () => {
+    if (!isSorted) {
+      // Sort tasks based on the yearGoal as a number
+      const sortedTasks = [...task].sort(
+        (a, b) => getYearValue(a.yearGoal) - getYearValue(b.yearGoal)
+      );
+      setTask(sortedTasks);
+    } else {
+      // Reset to the original order
+      setTask(noSort);
+    }
+    setIsSorted(!isSorted); // Toggle sorted state
+  };
+
   const handleDelete = (id) => {
     fetch("http://localhost:8000/Goal/" + id, {
       method: "DELETE",
@@ -41,6 +75,7 @@ const NextTen = ({ filteredData }) => {
   };
 
   const handleSub = (e) => {
+    e.preventDefault();
     const Goalset = { theGoal, yearGoal, mark };
     setPending(true);
 
@@ -48,11 +83,16 @@ const NextTen = ({ filteredData }) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(Goalset),
-    }).then(() => {
-      setPending(false);
-      setGoal("");
-      window.location.reload();
-    });
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((newData) => {
+        setPending(false);
+        setGoal("");
+
+        setData([...data, newData]);
+      });
   };
 
   return (
@@ -98,11 +138,49 @@ const NextTen = ({ filteredData }) => {
         </button>
       </form>
 
+      <button onClick={handleSort}>
+        {isSorted ? "Reset" : "Sort by Year"}
+      </button>
+
       <div className="border border-light m-4 text-light">
         {loading && <p>Loading...</p>}
         {err && <p>{err}</p>}
-        {data && <GoalList data={data} handleDelete={handleDelete} />}
+        {data && (
+          <GoalList data={task} handleDelete={handleDelete} setData={setData} />
+        )}
       </div>
+
+      {data && data.length >= 13 && (
+        <div>
+          {data && (
+            <h1 className="text-light fw-bold">
+              1 Year Goal:{" "}
+              {data.filter((count) => count.yearGoal === "1 Year Goal").length}
+            </h1>
+          )}
+
+          {data && (
+            <h1 className="text-light fw-bold">
+              3 Year Goal:{" "}
+              {data.filter((count) => count.yearGoal === "3 Year Goal").length}
+            </h1>
+          )}
+
+          {data && (
+            <h1 className="text-light fw-bold">
+              5 Year Goal:{" "}
+              {data.filter((count) => count.yearGoal === "5 Year Goal").length}
+            </h1>
+          )}
+
+          {data && (
+            <h1 className="text-light fw-bold">
+              10 Year Goal:{" "}
+              {data.filter((count) => count.yearGoal === "10 Year Goal").length}
+            </h1>
+          )}
+        </div>
+      )}
 
       <div className="row text-center">
         <div className="col-sm text-light border border-light">
@@ -136,6 +214,10 @@ const NextTen = ({ filteredData }) => {
         <p className="lead text-warning text-center fst-italic mt-3">
           &#8226; If the family together finally reaches a goal, celebrate with
           the family- Jim Rohn
+        </p>
+        <p className="lead text-warning text-center fst-italic mt-3">
+          &#8226; It's very important that if something's not that important to
+          you to take it off your list
         </p>
       </div>
     </div>

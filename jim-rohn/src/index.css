@@ -2,7 +2,6 @@ body{
   background-color: #090909;
   overflow: auto;
   scrollbar-width: none; /* Firefox */
-  height: 2000px;
 }
 
 ::-webkit-scrollbar{

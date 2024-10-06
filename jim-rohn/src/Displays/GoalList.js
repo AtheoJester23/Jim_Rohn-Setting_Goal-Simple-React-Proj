@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Tooltip from "../toolTip";
 import * as bootstrap from "bootstrap";
 
-const GoalList = ({ data, handleDelete }) => {
+const GoalList = ({ data, handleDelete, setData }) => {
   const [editDrop, setEditDrop] = useState(null);
   const [theGoal, setGoal] = useState("");
   const [editYear, setEditYear] = useState(null);
@@ -46,7 +46,14 @@ const GoalList = ({ data, handleDelete }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newYear),
     }).then(() => {
-      window.location.reload();
+      setData(
+        data.map((yearChange) =>
+          yearChange.id === id
+            ? { ...yearChange, yearGoal: newYear.yearGoal }
+            : yearChange
+        )
+      );
+      setEditYear(null);
     });
   };
 
@@ -66,7 +73,15 @@ const GoalList = ({ data, handleDelete }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(renamedGoal),
     }).then(() => {
-      window.location.reload();
+      setData(
+        data.map((newName) =>
+          newName.id === id
+            ? { ...newName, theGoal: renamedGoal.theGoal }
+            : newName
+        )
+      );
+      setGoal("");
+      setEditDrop(null);
     });
   };
 
@@ -79,8 +94,15 @@ const GoalList = ({ data, handleDelete }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedMark),
     }).then(() => {
+      setData(
+        data.map((previousData) =>
+          previousData.id === id
+            ? { ...previousData, mark: updatedMark.mark }
+            : previousData
+        )
+      );
+
       setMark(markUpdate);
-      window.location.reload();
     });
   };
 
@@ -100,9 +122,15 @@ const GoalList = ({ data, handleDelete }) => {
         <div
           key={aGoal.id}
           className={`goal-item`}
-          onClick={() =>
-            handleCheckMark(aGoal.id, aGoal.mark, aGoal.theGoal, aGoal.yearGoal)
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            handleCheckMark(
+              aGoal.id,
+              aGoal.mark,
+              aGoal.theGoal,
+              aGoal.yearGoal
+            );
+          }}
         >
           <div className="goal-item-content">
             {editYear !== aGoal.id && ( // Only show this section when 'editYear' is NOT equal to 'aGoal.id'
@@ -209,7 +237,6 @@ const GoalList = ({ data, handleDelete }) => {
                     <a
                       onClick={(e) => handleEdit(aGoal.id, e)}
                       className="dropdown-item"
-                      href="#"
                     >
                       Rename
                     </a>
@@ -218,17 +245,12 @@ const GoalList = ({ data, handleDelete }) => {
                     <a
                       onClick={(e) => handleYearEdit(aGoal.id, e)}
                       className="dropdown-item"
-                      href="#"
                     >
                       Change Year Goal
                     </a>
                   </div>
                   <div>
-                    <a
-                      onClick={handleCancel}
-                      className="dropdown-item"
-                      href="#"
-                    >
+                    <a onClick={handleCancel} className="dropdown-item">
                       Cancel
                     </a>
                   </div>
@@ -236,7 +258,6 @@ const GoalList = ({ data, handleDelete }) => {
                     <a
                       onClick={(e) => handleConfirmDel(aGoal.id, e)}
                       className="dropdown-item"
-                      href="#"
                     >
                       Delete
                     </a>
@@ -256,11 +277,7 @@ const GoalList = ({ data, handleDelete }) => {
                 />
 
                 <div>
-                  <button
-                    onClick={handleCancel}
-                    className="btn btn-warning"
-                    href="#"
-                  >
+                  <button onClick={handleCancel} className="btn btn-warning">
                     Cancel
                   </button>
 

@@ -8,6 +8,12 @@ const Home = () => {
 
   return (
     <div>
+      <h1 className="Lead text-light">
+        Purpose of this exercise: To stretch you, get you to think, get you to
+        ponder, to wonder what might be possible if you could get everything you
+        wanted, what could it be... - Jim Rohn
+      </h1>
+
       <section className="vidSec">
         <video
           id="video"
