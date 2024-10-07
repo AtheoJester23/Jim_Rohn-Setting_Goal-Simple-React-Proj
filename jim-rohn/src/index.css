@@ -28,7 +28,7 @@ body{
   background-color: orangered;
   display: flex;
   flex-direction: column;
-  width: 150px;
+  width: 220px;
 }
 
 /* How the grid worked: */
