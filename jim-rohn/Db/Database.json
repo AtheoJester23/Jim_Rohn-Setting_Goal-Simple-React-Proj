@@ -48,6 +48,7 @@
       "mark": "Done",
       "theGoal": "three year goal",
       "yearGoal": "1 Year Goal",
+      "selected": "yes",
       "id": "cf91"
     },
     {
@@ -63,9 +64,10 @@
       "id": "e5ef"
     },
     {
+      "mark": "notDone",
       "theGoal": "Testing this is a much longer rename of a long title testing testing testing",
       "yearGoal": "1 Year Goal",
-      "mark": "notDone",
+      "selected": "yes",
       "id": "117c"
     },
     {
@@ -75,7 +77,7 @@
       "id": "7bcc"
     },
     {
-      "mark": "Done",
+      "mark": "notDone",
       "theGoal": "Thisistheonethatisnotbeingtruncatedbecausetheirisnospacebar",
       "yearGoal": "10 Year Goal",
       "id": "e3ab"
@@ -84,6 +86,7 @@
       "mark": "Done",
       "theGoal": "edcba",
       "yearGoal": "1 Year Goal",
+      "selected": "yes",
       "id": "b66f"
     },
     {
@@ -96,6 +99,7 @@
       "mark": "notDone",
       "theGoal": "asdfvcxzcvasdfasd",
       "yearGoal": "1 Year Goal",
+      "selected": "yes",
       "id": "7e2d"
     },
     {
@@ -183,10 +187,10 @@
       "mark": "notDone"
     },
     {
-      "id": "3a1a",
+      "mark": "notDone",
       "theGoal": "abdcqwerty",
       "yearGoal": "5 Year Goal",
-      "mark": "notDone"
+      "id": "3a1a"
     },
     {
       "id": "736a",
@@ -195,10 +199,10 @@
       "mark": "notDone"
     },
     {
-      "id": "a26d",
+      "mark": "notDone",
       "theGoal": "\\';lk",
       "yearGoal": "10 Year Goal",
-      "mark": "notDone"
+      "id": "a26d"
     }
   ]
 }

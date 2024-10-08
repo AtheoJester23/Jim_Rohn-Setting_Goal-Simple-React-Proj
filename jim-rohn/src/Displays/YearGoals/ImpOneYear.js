@@ -22,12 +22,20 @@ const ImpOneYear = ({ data }) => {
       return goal;
     });
 
+    // Find the specific goal that was updated
+    const updatedGoal = updatedGoals.find((goal) => goal.id === id);
+
     setGoals(updatedGoals);
 
     fetch("http://localhost:8000/Goal/" + id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ selected: updatedGoals.selected }),
+      body: JSON.stringify({
+        mark: updatedGoal.mark,
+        theGoal: updatedGoal.theGoal,
+        yearGoal: updatedGoal.yearGoal,
+        selected: updatedGoal.selected,
+      }),
     });
   };
 
