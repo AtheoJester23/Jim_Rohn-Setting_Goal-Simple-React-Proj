@@ -7,6 +7,8 @@ import FiveYearGoal from "../Displays/YearGoals/FiveYearGoal";
 import { Windows } from "react-bootstrap-icons";
 import TenYearGoal from "../Displays/YearGoals/TenYearGoal";
 import vidTwo from "../Videos/NextTen.mp4";
+import { Button } from "bootstrap";
+import { Link } from "react-router-dom";
 
 const NextTen = ({ filteredData }) => {
   const [accompCount, setAccompCount] = useState(0);
@@ -28,6 +30,8 @@ const NextTen = ({ filteredData }) => {
 
   const [yearGoal, setYearGoal] = useState("");
   const [goalCount, setGoalCount] = useState(0);
+
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:8000/Goal")
@@ -172,6 +176,9 @@ const NextTen = ({ filteredData }) => {
       });
   };
 
+  const toggleVisibility = () => {
+    setIsVisible((boolVis) => !boolVis);
+  };
   return (
     <div className="container m-5">
       <section className="vidSec">
@@ -249,33 +256,57 @@ const NextTen = ({ filteredData }) => {
 
       {data && data.length >= 13 && (
         <div>
-          {data && (
-            <h1 className="text-light fw-bold">
-              1 Year Goal:{" "}
-              {data.filter((count) => count.yearGoal === "1 Year Goal").length}
-            </h1>
-          )}
+          <button className="showTotal" onClick={toggleVisibility}>
+            Show Each Total
+          </button>
+          <div
+            class="totalEach"
+            style={{ display: isVisible ? "block" : "none" }}
+          >
+            {data && (
+              <h1 className="text-light fw-bold">
+                1 Year Goal:{" "}
+                {
+                  data.filter((count) => count.yearGoal === "1 Year Goal")
+                    .length
+                }
+              </h1>
+            )}
 
-          {data && (
-            <h1 className="text-light fw-bold">
-              3 Year Goal:{" "}
-              {data.filter((count) => count.yearGoal === "3 Year Goal").length}
-            </h1>
-          )}
+            {data && (
+              <h1 className="text-light fw-bold">
+                3 Year Goal:{" "}
+                {
+                  data.filter((count) => count.yearGoal === "3 Year Goal")
+                    .length
+                }
+              </h1>
+            )}
 
-          {data && (
-            <h1 className="text-light fw-bold">
-              5 Year Goal:{" "}
-              {data.filter((count) => count.yearGoal === "5 Year Goal").length}
-            </h1>
-          )}
+            {data && (
+              <h1 className="text-light fw-bold">
+                5 Year Goal:{" "}
+                {
+                  data.filter((count) => count.yearGoal === "5 Year Goal")
+                    .length
+                }
+              </h1>
+            )}
 
-          {data && (
-            <h1 className="text-light fw-bold">
-              10 Year Goal:{" "}
-              {data.filter((count) => count.yearGoal === "10 Year Goal").length}
-            </h1>
-          )}
+            {data && (
+              <h1 className="text-light fw-bold">
+                10 Year Goal:{" "}
+                {
+                  data.filter((count) => count.yearGoal === "10 Year Goal")
+                    .length
+                }
+              </h1>
+            )}
+          </div>
+
+          <Link to="/Pages/3" className="btn btn-success">
+            Next
+          </Link>
         </div>
       )}
 

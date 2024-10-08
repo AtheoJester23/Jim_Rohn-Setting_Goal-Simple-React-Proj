@@ -5,6 +5,7 @@ import Navnav from "./Navbar";
 import Accomplished from "./Pages/Accomplished";
 import NextTen from "./Pages/Next10Years";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import ImportantYearGoal from "./Pages/ImportantYearGoal";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/Pages/1" element={<Accomplished />} />
           <Route path="/Pages/2" element={<NextTen />} />
+          <Route path="/Pages/3" element={<ImportantYearGoal />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -46,8 +46,8 @@ const GoalList = ({ data, handleDelete, setData }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newYear),
     }).then(() => {
-      setData(
-        data.map((yearChange) =>
+      setData((prevData) =>
+        prevData.map((yearChange) =>
           yearChange.id === id
             ? { ...yearChange, yearGoal: newYear.yearGoal }
             : yearChange
@@ -73,8 +73,8 @@ const GoalList = ({ data, handleDelete, setData }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(renamedGoal),
     }).then(() => {
-      setData(
-        data.map((newName) =>
+      setData((prevData) =>
+        prevData.map((newName) =>
           newName.id === id
             ? { ...newName, theGoal: renamedGoal.theGoal }
             : newName
