@@ -62,7 +62,7 @@ const Accomplished = () => {
 
   return (
     <div>
-      <section className="vidSec">
+      {/* <section className="vidSec">
         <video
           id="video"
           width="700"
@@ -75,7 +75,7 @@ const Accomplished = () => {
           <source src={accompVid} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-      </section>
+      </section> */}
 
       {accompCount < 5 ? (
         <div>

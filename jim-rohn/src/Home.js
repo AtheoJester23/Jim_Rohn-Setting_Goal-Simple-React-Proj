@@ -14,7 +14,7 @@ const Home = () => {
         wanted, what could it be... - Jim Rohn
       </h1>
 
-      <section className="vidSec">
+      {/* <section className="vidSec">
         <video
           id="video"
           width="700"
@@ -27,7 +27,7 @@ const Home = () => {
           <source src={myVid} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-      </section>
+      </section> */}
 
       {loading && <p>Loading...</p>}
       {err && <p>{err}</p>}

@@ -181,7 +181,7 @@ const NextTen = ({ filteredData }) => {
   };
   return (
     <div className="container m-5">
-      <section className="vidSec">
+      {/* <section className="vidSec">
         <video
           id="video"
           width="700"
@@ -194,7 +194,7 @@ const NextTen = ({ filteredData }) => {
           <source src={vidTwo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-      </section>
+      </section> */}
 
       <form onSubmit={handleSub}>
         <label className="text-light">Goal: </label>
